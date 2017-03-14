@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+
+<html ng-app='app' lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Controller and Directives</title>
+    <script src='/angular/angular.js'></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('myController', function ()
+        {
+            this.foods = [];
+            this.addFood = function()
+            {
+                this.foods.push(this.newFood);
+                this.newFood = '';
+            }
+        })        
+    </script>
+</head>
+<body>
+    <div ng-controller='myController as myCtrl'>
+        <form>
+            Favorite Food <input type='text' ng-model='myCtrl.newFood'>
+            <input type='submit' value='Add Food' ng-click='myCtrl.addFood()'>
+        </form>
+        <p>Currently typing: {{ myCtrl.newFood }}</p>
+
+        <input ng-model='filterFood' type='text' value='Filter...'>
+        <table>
+            <tr ng-repeat='food in myCtrl.foods | filter:filterFood'>
+                <td>{{ food }}</td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>
