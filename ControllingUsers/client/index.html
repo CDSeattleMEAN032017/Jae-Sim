@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+
+<html ng-app='app' lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Controlling Users</title>
+    <script src='angular/angular.js'></script>
+    <script>
+        var app = angular.module('app', []);
+        app.controller('userController', function ()
+        {
+            this.users = [];
+            this.addUser = function()
+            {
+                this.users.push(this.newUser);
+                this.newUser = [];
+            }
+
+            this.delIndex = function (val)
+            {
+                this.users.splice(val, 1);
+            }
+        })
+    </script>
+</head>
+<body>
+    <div ng-controller='userController as uCtrl'>
+        <h3>Users Controller</h3>
+        <form style='border: solid; width: 400px; padding: 20px;'>
+            First Name <input type='text' ng-model='uCtrl.newUser.fname'><br>
+            Last Name <input type='text' ng-model='uCtrl.newUser.lname'><br>
+            Favorite Language <input type='text' ng-model='uCtrl.newUser.flang'>
+            <input type='submit' value='Create User' ng-click='uCtrl.addUser()'><br>
+        </form>
+
+        <table border = '1'>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Fav Language</th>
+                <th>Actions</th>
+            </tr>
+            <tr ng-repeat='user in uCtrl.users track by $index'>
+                <td>{{ user.fname }}</td>
+                <td>{{ user.lname }}</td>
+                <td>{{ user.flang }}</td>
+                <td><button ng-click='uCtrl.delIndex($index)'>Delete User</button></td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
