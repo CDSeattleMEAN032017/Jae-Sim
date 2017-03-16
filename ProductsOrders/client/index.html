@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+
+<html ng-app='app' lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Playing with a Factory</title>
+    <script src='angular/angular.js'></script>
+    <script src='./main.js'></script>
+</head>
+<body>
+    
+        <div ng-controller='productController as pCtrl'>
+            <div style='border:solid; width: 600px; padding: 20px;'>
+                <h2>Products Controller</h2>
+                <form>
+                    Product Name  <input type='text' name='pname' ng-model='pCtrl.newProduct.pname'><br>
+                    Product Price $<input type='number' name='pprice' ng-model='pCtrl.newProduct.pprice'>
+                    <input type='submit' name='submit' value='Add Product' ng-click='pCtrl.addPrdct()'>
+                </form>
+                <br>
+                <table border='1' cellspacing='0' width='100%'>
+                    <tr>
+                        <th>
+                            <a href='#' ng-click="pCtrl.sortType='pname'; pCtrl.sortReverse = !pCtrl.sortReverse">
+                                <span ng-show="pCtrl.sortType =='pname' && !pCtrl.sortReverse"></span>
+                                <span ng-show="pCtrl.sortType =='pname' && pCtrl.sortReverse"></span>
+                                Product
+                            </a>
+                        </th>
+                        <th>
+                            <a href='#' ng-click="pCtrl.sortType='pprice'; pCtrl.sortReverse = !pCtrl.sortReverse">
+                                <span ng-show="pCtrl.sortType =='pprice' && !pCtrl.sortReverse"></span>
+                                <span ng-show="pCtrl.sortType =='pprice' && pCtrl.sortReverse"></span>
+                                Price
+                            </a>
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat="producto in pCtrl.productos | orderBy:pCtrl.sortType:pCtrl.sortReverse">
+                        <td>{{ producto.pname }}</td>
+                        <td> ${{ producto.pprice }}</td>
+                        <td><button ng-click='pCtrl.delPrdct($index)'>Delete Product</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div ng-controller='buyController as bCtrl'>
+            <div style='border:solid; width: 600px; padding: 20px;'>
+                <h2>Others Controller</h2>
+                <table border='1' cellspacing='0' width='100%'>
+                    <tr>
+                        <th>
+                            <a href='#' ng-click="bCtrl.sortType='pname'; bCtrl.sortReverse = !bCtrl.sortReverse">
+                                <span ng-show="bCtrl.sortType =='pname' && !bCtrl.sortReverse"></span>
+                                <span ng-show="bCtrl.sortType =='pname' && bCtrl.sortReverse"></span>
+                                Product
+                            </a>
+                        </th>
+                        <th>
+                            <a href='#' ng-click="bCtrl.sortType='pprice'; bCtrl.sortReverse = !bCtrl.sortReverse">
+                                <span ng-show="bCtrl.sortType =='pprice' && !bCtrl.sortReverse"></span>
+                                <span ng-show="bCtrl.sortType =='pprice' && bCtrl.sortReverse"></span>
+                                Price
+                            </a>
+                        </th>
+                        <th>
+                            <a href='#' ng-click="bCtrl.sortType='pquantity'; bCtrl.sortReverse = !bCtrl.sortReverse">
+                                <span ng-show="bCtrl.sortType =='pquantity' && !bCtrl.sortReverse"></span>
+                                <span ng-show="bCtrl.sortType =='pquantity' && bCtrl.sortReverse"></span>
+                                Qty Available
+                            </a>
+                       </th>
+                        <th>Actions</th>
+                    </tr>
+                    <tr ng-repeat='producto in bCtrl.productos | orderBy:bCtrl.sortType:bCtrl.sortReverse'>
+                        <td>{{ producto.pname }}</td>
+                        <td>${{ producto.pprice }}</td>
+                        <td>{{ producto.pquantity }}</td>
+                        <td><button ng-click='bCtrl.buyPrdct($index)'>Buy</button></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+</body>
+</html>
