@@ -1,0 +1,32 @@
+<div style='border:solid; width:600px; padding:20px;'
+     ng-controller='associationsController as aCtrl'>
+    <form>
+        <table cellspacing='20%'>
+            <tr>
+                <td>
+                    <select ng-model='aCtrl.assPlayer'>
+                        <option ng-repeat='player in aCtrl.players'>{{ player.name }}</option>
+                    </select>
+                </td>
+                <td>
+                    <select ng-model='aCtrl.assTeam'>
+                        <option ng-repeat='team in aCtrl.teams'>{{ team.name }}</option>
+                    </select>
+                </td>
+                <td><button ng-click='aCtrl.assign()'>Assign Player to Team</button></td>
+            </tr>
+        </table>
+        <table width='100%' border='1' cellspacing='0'>
+            <tr>
+                <th> Name</th>
+                <th>Team</th>
+                <th></th>
+            </tr>
+            <tr ng-repeat='ass in aCtrl.asses'>
+                <td>{{ ass.player }}</td>
+                <td>{{ ass.team }}</td>
+                <td><button ng-click='aCtrl.delAss($index)'>Clear Association</button></td>
+            </tr>
+        </table>
+    </form>
+</div>

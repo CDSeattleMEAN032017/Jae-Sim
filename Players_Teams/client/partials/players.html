@@ -1,0 +1,23 @@
+<div style='border:solid; width:600px; padding:20px;'
+     ng-controller='playersController as pCtrl'>
+    <form>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type='text' ng-model='pCtrl.newPlayer.name'></td>
+                <td><button ng-click='pCtrl.addPlayer()'>Add Player</button></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table width='100%' border='1' cellspacing='0'>
+        <tr>
+            <th> Name</th>
+            <th>Actions</th>
+        </tr>
+        <tr ng-repeat='player in pCtrl.players'>
+            <td>{{ player.name }}</td>
+            <td><button ng-click='pCtrl.delPlayer($index)'>Remove Player</button></td>
+        </tr>
+    </table>
+</div>

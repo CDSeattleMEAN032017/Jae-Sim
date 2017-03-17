@@ -1,0 +1,23 @@
+<div style='border:solid; width:600px; padding:20px;'
+     ng-controller='teamsController as tCtrl'>
+    <form>
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type='text' ng-model='tCtrl.newTeam.name'></td>
+                <td><button ng-click='tCtrl.addTeam()'>Add Team</button></td>
+            </tr>
+        </table>
+    </form>
+    <br>
+    <table width='100%' border='1' cellspacing='0'>
+        <tr>
+            <th> Name</th>
+            <th>Actions</th>
+        </tr>
+        <tr ng-repeat='team in tCtrl.teams'>
+            <td>{{ team.name }}</td>
+            <td><button ng-click='tCtrl.delTeam($index)'>Remove Team</button></td>
+        </tr>
+    </table>
+</div>

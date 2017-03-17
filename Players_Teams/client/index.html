@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html ng-app="app" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Users Controller</title>
+    <script src='angular/angular.js'></script>
+    <script src='angular-route/angular-route.js'></script>
+    <script src='app.js'></script>
+    <script src='playersFactory.js'></script>
+    <script src='playersController.js'></script>
+    <script src='teamsFactory.js'></script>
+    <script src='teamsController.js'></script>
+    <script src='assController.js'></script>
+    <script src='routes.js'></script>
+</head>
+<body>
+    <p><a href='#!/players'>Players</a> | <a href='#!/teams'>Teams</a> | 
+    <a href='#!/associations'>Associations</a></p>
+    <div ng-view=''>
+    </div>
+</body>
+</html>
